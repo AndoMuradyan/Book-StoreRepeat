@@ -1,0 +1,187 @@
+<!--&lt;!&ndash;<?xml version="1.0" encoding="UTF-8"?>&ndash;&gt;-->
+<!--&lt;!&ndash;<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"&ndash;&gt;-->
+<!--&lt;!&ndash;                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&ndash;&gt;-->
+<!--&lt;!&ndash;                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog&ndash;&gt;-->
+<!--&lt;!&ndash;                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <changeSet id="0" author="admin">&ndash;&gt;-->
+
+<!--&lt;!&ndash;    </changeSet>&ndash;&gt;-->
+<!--&lt;!&ndash;</databaseChangeLog>&ndash;&gt;-->
+
+<!--<databaseChangeLog-->
+<!--        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"-->
+<!--        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-->
+<!--   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">-->
+
+<!--    <changeSet author="amuradyan" id="initdb">-->
+<!--        <createTable tableName="user">-->
+<!--            <column name="id" type="BIGINT" autoIncrement="true">-->
+<!--                <constraints primaryKey="true"/>-->
+<!--            </column>-->
+<!--            <column name="name" type="VARCHAR(255)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="surname" type="VARCHAR(255)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="email" type="VARCHAR(255)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="password" type="VARCHAR(255)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="user_role" type="ENUM('USER','ADMIN')" defaultValue="USER">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="is_enable" type="INT(1)" defaultValue="0"/>-->
+<!--        </createTable>-->
+<!--    </changeSet>-->
+
+<!--    <changeSet id="addPhoneNumberUser" author="amuradyan">-->
+<!--        <addColumn tableName="user">-->
+<!--            <column name="phone_number" type="varchar(255)"/>-->
+<!--        </addColumn>-->
+<!--    </changeSet>-->
+
+<!--    <changeSet author="amuradyan" id="init">-->
+<!--        <createTable tableName="book">-->
+<!--            <column name="id" type="BIGINT" autoIncrement="true">-->
+<!--                <constraints primaryKey="true"/>-->
+<!--            </column>-->
+<!--            <column name="title" type="VARCHAR(255)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="price" type="double"/>-->
+<!--            <column name="description" type="text"/>-->
+<!--        </createTable>-->
+<!--    </changeSet>-->
+
+<!--    <changeSet id="createBookAndOrderTable" author="amuradyan">-->
+
+<!--        <sql>-->
+<!--            create table book_order-->
+<!--            (-->
+<!--                id              int auto_increment,-->
+<!--                user_id         int      not null,-->
+<!--                book_id         int      not null,-->
+<!--                order_date_time datetime not null,-->
+<!--                constraint book_order_pk-->
+<!--                    primary key (id)-->
+<!--            );-->
+<!--        </sql>-->
+<!--    </changeSet>-->
+
+<!--        <changeSet id="initOr" author="amuradyan">-->
+<!--            <createTable tableName="user">-->
+<!--                <column name="id" type="BIGINT(8)" autoIncrement="true">-->
+<!--                    <constraints nullable="false" primaryKey="true"/>-->
+<!--                </column>-->
+<!--            </createTable>-->
+
+<!--            <createTable tableName="book_orders">-->
+<!--                <column name="id" type="BIGINT(8)" autoIncrement="true">-->
+<!--                    <constraints nullable="false" primaryKey="true"/>-->
+<!--                </column>-->
+<!--                <column name="user_id" type="BIGINT"/>-->
+<!--            </createTable>-->
+<!--        </changeSet>-->
+<!--&lt;!&ndash;    <changeSet id="addVerifyTokenToUser" author="amuradyan">&ndash;&gt;-->
+<!--&lt;!&ndash;        <addColumn tableName="user">&ndash;&gt;-->
+<!--&lt;!&ndash;            <column type="varchar(255)" name="verify_token"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        </addColumn>&ndash;&gt;-->
+<!--&lt;!&ndash;    </changeSet>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <changeSet id="addAmountToOrderBook" author="amuradyan">&ndash;&gt;-->
+<!--&lt;!&ndash;        <addColumn tableName="book_order">&ndash;&gt;-->
+<!--&lt;!&ndash;            <column name="amount" type="double"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        </addColumn>&ndash;&gt;-->
+<!--&lt;!&ndash;    </changeSet>&ndash;&gt;-->
+
+<!--</databaseChangeLog>-->
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="aMuradyan" id="initdb">
+        <createTable tableName="user">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_role" type="ENUM('USER','ADMIN')" defaultValue="USER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_enable" type="INT(1)" defaultValue="0"/>
+
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="addPhoneNumberToUser" author="aMuradyan">
+        <addColumn tableName="user">
+            <column name="phone_number" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="createBookAndOrderTable" author="aMuradyan">
+        <sql>
+            create table if not exists book
+            (
+                id          int auto_increment
+                primary key,
+                title       varchar(255) not null,
+                description text         null,
+                price       double       null
+                );
+        </sql>
+
+        <sql>
+            create table book_order
+            (
+                id              int auto_increment,
+                user_id         int      not null,
+                book_id         int      not null,
+                order_date_time datetime not null,
+                constraint book_order_pk
+                    primary key (id)
+            );
+        </sql>
+
+    </changeSet>
+
+<!--        <changeSet id="addconstraints" author="aMuradyan">-->
+<!--            <addForeignKeyConstraint baseTableName="book_order" baseColumnNames="user_id" constraintName="fk_book_order_user" referencedTableName="user"-->
+<!--                                     referencedColumnNames="id"/>-->
+<!--               <addForeignKeyConstraint baseTableName="book_order" baseColumnNames="book_id" constraintName="fk_book_order_book" referencedTableName="book"-->
+<!--                                     referencedColumnNames="id"/>-->
+
+<!--        </changeSet>-->
+
+
+    <changeSet id="addVerifyTokenToUser" author="aMuradyan">
+        <addColumn tableName="user">
+            <column type="varchar(255)" name="verify_token"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="addAmountToOrderBook" author="aMuradyan">
+        <addColumn tableName="book_order">
+            <column name="amount" type="DOUBLE"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>
